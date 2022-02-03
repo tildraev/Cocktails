@@ -21,12 +21,11 @@ class CocktailDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchCocktailImage()
         updateView()
     }
     
     func updateView() {
-        
-        //setImage()
         
         guard let cocktail = cocktail else { return }
         drinkNameLabel.text = cocktail.name
@@ -39,9 +38,15 @@ class CocktailDetailViewController: UIViewController {
         for i in 1...cocktail.measurementOfIngredients.count - 1{
             measurementsTextView.text.append("\n" + cocktail.measurementOfIngredients[i])
         }
+    }
+    
+    func fetchCocktailImage() {
+        guard let cocktail = cocktail else { return }
         
         NetworkController.fetchCocktailImage(cocktail: cocktail) { drinkImage in
-            if let drinkImage = drinkImage {
+            guard let drinkImage = drinkImage else { return }
+            
+            DispatchQueue.main.async {
                 self.drinkImageView.image = drinkImage
             }
         }

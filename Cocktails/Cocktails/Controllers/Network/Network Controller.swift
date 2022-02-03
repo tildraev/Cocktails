@@ -61,13 +61,18 @@ class NetworkController {
     static func fetchCocktailImage(cocktail: Cocktail, completion: @escaping (UIImage?) -> Void) {
 
         guard let imageURL = URL(string: cocktail.imageURLString) else {return}
-        DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: imageURL) {
-                if let image = UIImage(data: data) {
-                    completion(image)
-                }
+        
+        URLSession.shared.dataTask(with: imageURL) { data, _, error in
+            if let error = error {
+                print("Error on image \(error.localizedDescription)")
             }
-        }
-        completion(nil)
+            
+            if let data = data {
+                guard let cocktailImage = UIImage(data: data) else {completion(nil); return}
+                completion(cocktailImage)
+            }
+            
+        }.resume()
+
     }
 }

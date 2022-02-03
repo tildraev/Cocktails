@@ -101,14 +101,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iih-YV-khX">
                                         <rect key="frame" x="10" y="252" width="374" height="220"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Measurements" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="594-el-L7X">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Measurements:" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="594-el-L7X">
                                                 <rect key="frame" x="0.0" y="0.0" width="182" height="220"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Ingredients" translatesAutoresizingMaskIntoConstraints="NO" id="a4f-ru-CPX">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Ingredients:" translatesAutoresizingMaskIntoConstraints="NO" id="a4f-ru-CPX">
                                                 <rect key="frame" x="192" y="0.0" width="182" height="220"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
