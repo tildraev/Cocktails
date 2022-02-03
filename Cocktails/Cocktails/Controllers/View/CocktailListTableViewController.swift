@@ -66,7 +66,6 @@ class CocktailListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return listOfCocktails.count
     }
 
@@ -78,15 +77,6 @@ class CocktailListTableViewController: UITableViewController {
         // Configure the cell...
 
         return cell
-    }
-
-    
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
     }
     
     // MARK: - Navigation
