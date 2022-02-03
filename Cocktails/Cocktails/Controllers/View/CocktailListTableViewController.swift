@@ -16,6 +16,14 @@ class CocktailListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkController.fetchCocktails(filterLetter: filterLetter) { listOfCocktails in
+            guard let listOfCocktails = listOfCocktails else { return }
+            self.listOfCocktails = listOfCocktails
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     @IBAction func previousButtonTapped(_ sender: Any) {
@@ -23,6 +31,16 @@ class CocktailListTableViewController: UITableViewController {
             alphabeticalIndex -= 1
             
             filterByLetter()
+            
+            NetworkController.fetchCocktails(filterLetter: filterLetter) { listOfCocktails in
+                if let listOfCocktails = listOfCocktails {
+                    self.listOfCocktails = listOfCocktails
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -31,6 +49,16 @@ class CocktailListTableViewController: UITableViewController {
             alphabeticalIndex += 1
             
             filterByLetter()
+            
+            NetworkController.fetchCocktails(filterLetter: filterLetter) { listOfCocktails in
+                if let listOfCocktails = listOfCocktails {
+                    self.listOfCocktails = listOfCocktails
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -65,8 +93,14 @@ class CocktailListTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toCocktailDetailVC" {
+            if let index = tableView.indexPathForSelectedRow {
+                if let destination = segue.destination as? CocktailDetailViewController {
+                    let newCocktail = listOfCocktails[index.row]
+                    destination.cocktail = newCocktail
+                }
+            }
+        }
     }
     
     func filterByLetter(){
