@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkController {
     static private let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php"
@@ -55,5 +56,18 @@ class NetworkController {
                 }
             }
         }.resume()
+    }
+    
+    static func fetchCocktailImage(cocktail: Cocktail, completion: @escaping (UIImage?) -> Void) {
+
+        guard let imageURL = URL(string: cocktail.imageURLString) else {return}
+        DispatchQueue.main.async {
+            if let data = try? Data(contentsOf: imageURL) {
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
+            }
+        }
+        completion(nil)
     }
 }

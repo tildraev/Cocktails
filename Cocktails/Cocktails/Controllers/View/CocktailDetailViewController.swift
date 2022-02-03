@@ -26,7 +26,7 @@ class CocktailDetailViewController: UIViewController {
     
     func updateView() {
         
-        setImage()
+        //setImage()
         
         guard let cocktail = cocktail else { return }
         drinkNameLabel.text = cocktail.name
@@ -39,16 +39,10 @@ class CocktailDetailViewController: UIViewController {
         for i in 1...cocktail.measurementOfIngredients.count - 1{
             measurementsTextView.text.append("\n" + cocktail.measurementOfIngredients[i])
         }
-    }
-    
-    func setImage() {
-        guard let cocktail = cocktail else { return }
-        guard let imageURL = URL(string: cocktail.imageURLString) else {return}
-        DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: imageURL) {
-                if let image = UIImage(data: data) {
-                    self.drinkImageView.image = image
-                }
+        
+        NetworkController.fetchCocktailImage(cocktail: cocktail) { drinkImage in
+            if let drinkImage = drinkImage {
+                self.drinkImageView.image = drinkImage
             }
         }
     }

@@ -17,9 +17,9 @@ class Cocktail {
     
     init?(dictionary: [String:Any]) {
         
-        guard let name = dictionary["strDrink"] as? String else { return nil }
-        guard let instructions = dictionary["strInstructions"] as? String else { return nil }
-        guard let imageURLString = dictionary["strDrinkThumb"] as? String else { return nil }
+        guard let name           = dictionary["strDrink"]        as? String else { return nil }
+        guard let instructions   = dictionary["strInstructions"] as? String else { return nil }
+        guard let imageURLString = dictionary["strDrinkThumb"]   as? String else { return nil }
         
         for ingredientIndex in 1...15 {
             
